@@ -21,6 +21,7 @@ app.use(myConnection(mysql, {
   port:3306,
   database: 'expressjs-cruddb'
 }, 'single')) // single hace referencia a una configuración de myConnection
+app.use(express.urlencoded({extended: false})); // ayuda a recibir todos los datos desde el formulario // false porque solo se enviará texto simple
 
 // routes
 app.use('/', customerRoutes);

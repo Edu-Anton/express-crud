@@ -1,0 +1,61 @@
+<%- include('partials/_header') %>
+
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="mb-4">NodeJs Mysql</h1>
+        <form action="/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="name">
+          </div>
+          <div class="form-group">
+            <input type="text" name="address" class="form-control" placeholder="address">
+          </div>
+          <div class="form-group">
+            <input type="text" name="phone" class="form-control" placeholder="phone">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary">Añadir Cliente</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-8">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th>Nº</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <% if(data) {%>
+          <% for (var i=0; i < data.length; i++){ %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= data[i].name %></td>
+              <td><%= data[i].address %></td>
+              <td><%= data[i].phone %></td>
+              <td>
+                <a href="/update/<%= data[i].id %>" class="btn btn-primary btn-sm">Edit</a>
+                <a href="/delete/<%= data[i].id %>" class="btn btn-danger btn-sm">Delete</a>
+
+                <!-- <form action="/delete/<%= data[i].id %>" method="DELETE" class="form-inline">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form> -->
+              </td>
+              
+            </tr>
+          <% } %> 
+        <% } %>
+        <tr></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('partials/_footer') %>
